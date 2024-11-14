@@ -63,7 +63,12 @@ public class CategoryController {
 		return "redirect:/category";
 	}
 	
-	
-	
-
+	@PostMapping(value = "/update")
+	public String updateCategory(@RequestParam Long id, Map<String,Object> model, final RedirectAttributes redirectAttributes) {
+		categoryService.update(id);
+		List<Category> allCategories = categoryService.getAllCategories();
+		model.put("listCategories", allCategories);
+		redirectAttributes.addFlashAttribute("message","Category Updated Successfully !");
+		return "redirect:/category";
+	}
 }
