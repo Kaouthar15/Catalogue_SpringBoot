@@ -32,7 +32,7 @@
 		<form data-toggle="validator" role="form" th:object=${category} method="post" 
 		enctype="multipart/form-data" th:action="@{/categories/save}">
 		
-<!-- 				<input type="hidden" th:field="*{id}"/> -->
+				<input type="hidden" th:field="*{id}"/>
 				
 				<label for="name">Name : </label>
 				<input type="text" id="name" required th:field="*{name}"/> 
