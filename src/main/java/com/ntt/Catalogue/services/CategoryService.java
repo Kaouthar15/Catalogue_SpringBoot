@@ -36,7 +36,10 @@ public class CategoryService {
 	}
 	
 	public Category update(Category category) {
-		return categoryRepository.save(category);
+		if (categoryRepository.existsById(category.getId())) {
+			return categoryRepository.save(category);
+		}
+		return null;
 	}
 	
 	
