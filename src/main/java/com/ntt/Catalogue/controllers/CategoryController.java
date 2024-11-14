@@ -29,6 +29,15 @@ public class CategoryController {
 		this.categoryService = categoryService;
 	}
 	
+	@GetMapping("/add")
+	public String addCategory(Map<String, Object> model)  {
+		Category category = new Category();
+		List<Category> allCategories = categoryService.getAllCategories();
+		model.put("listCategories", allCategories);
+		model.put("category", category); 
+		return "category";
+	}
+	
 	@GetMapping("")
 	public String getAll(Map<String, Object> model) {
 		List<Category> allCategories = categoryService.getAllCategories();
