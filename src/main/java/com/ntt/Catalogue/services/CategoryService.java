@@ -35,12 +35,7 @@ public class CategoryService {
 		categoryRepository.deleteById(id); 
 	}
 	
-	public void update(Long id)  {
-		Category category = getCategoryById(id);  
-		if (categoryRepository.existsById(category.getId())) {
-			categoryRepository.save(category);
-		}
-	}
+
 	
 	
 }
