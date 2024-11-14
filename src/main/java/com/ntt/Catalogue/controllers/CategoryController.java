@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ntt.Catalogue.models.Category;
@@ -30,6 +31,17 @@ public class CategoryController {
 		model.put("listCategories", allCategories);
 		return "category";
 	}
+	
+	@GetMapping("/{id}")
+	public String getCategoryById(@PathVariable Long id, Map<String, Object> model) {
+		Category category = categoryService.getCategoryById(id);
+		List<Category> allCategories = categoryService.getAllCategories();
+		model.put("category", category);
+		model.put("listCategories", allCategories);
+		return "category";
+	} 
+	
+	
 	
 
 }
