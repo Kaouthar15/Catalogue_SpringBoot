@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Categories</title>
+<link rel="stylesheet" type="text/css" href="/css/styleCategory.css">
 </head>
 <body>
 	<div>
@@ -19,7 +20,11 @@
 				<td th:text="${category.description}"></td>
 				<td>
 					<a th:href="@{'/categories/'+ ${category.id}}">Edit</a>
-					<a th:href="@{'/categories/delete/'+ ${category.id}}">delete</a>
+<!-- 					<a th:href="@{'/categories/delete/'+ ${category.id}}">delete</a> -->
+					 <form th:action="@{'/delete'}" method="post" style="display:inline;">
+		                <input type="hidden" name="id" th:value="${category.id}" />
+		                <button type="submit">Delete</button>
+		            </form>
 				</td>
 			</tr>
 		</table>
