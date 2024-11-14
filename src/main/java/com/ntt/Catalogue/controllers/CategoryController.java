@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ntt.Catalogue.models.Category;
 import com.ntt.Catalogue.services.CategoryService;
 
-import ch.qos.logback.core.model.Model;
 
 @Controller
 @RequestMapping("/categories")
