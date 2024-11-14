@@ -35,11 +35,11 @@ public class CategoryService {
 		categoryRepository.deleteById(id); 
 	}
 	
-	public Category update(Category category) {
+	public void update(Long id)  {
+		Category category = getCategoryById(id);  
 		if (categoryRepository.existsById(category.getId())) {
-			return categoryRepository.save(category);
+			categoryRepository.save(category);
 		}
-		return null;
 	}
 	
 	
