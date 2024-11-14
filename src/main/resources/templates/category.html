@@ -24,5 +24,22 @@
 			</tr>
 		</table>
 	</div>
+	<div th:if="${category != null}">
+		<h3>Adding/Editing Form</h3>
+		<form data-toggle="validator" role="form" th:object=${category} method="post" 
+		enctype="multipart/form-data" th:action="@{/categories/save}">
+		
+				<input type="hidden" th:field="*{id}"/>
+				
+				<label for="name">Name : </label>
+				<input type="text" id="name" required th:field="*{name}"/> 
+			
+				<label for="description">Name : </label>
+				<input type="text" id="description" required th:field="*{description}"/>
+				
+				<input type="submit" value="submit "/>
+				
+		</form>
+	</div>
 </body>
 </html>
