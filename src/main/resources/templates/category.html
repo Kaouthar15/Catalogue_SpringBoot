@@ -19,12 +19,8 @@
 				<td th:text="${category.name}"></td>
 				<td th:text="${category.description}"></td>
 				<td>
-					<a th:href="@{'/categories/'+ ${category.id}}">Edit</a>
-<!-- 					<a th:href="@{'/categories/delete/'+ ${category.id}}">delete</a> -->
-					 <form th:action="@{'/delete'}" method="post" style="display:inline;">
-		                <input type="hidden" name="id" th:value="${category.id}" />
-		                <button type="submit">Delete</button>
-		            </form>
+					<a th:href="${'/categories/'+category.id}">Edit</a>
+					<a th:href="@{'/categories/delete/' +${category.id}}">delete</a> 
 				</td>
 			</tr>
 		</table>

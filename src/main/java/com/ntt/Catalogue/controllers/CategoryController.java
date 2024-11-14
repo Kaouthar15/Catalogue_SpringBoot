@@ -54,13 +54,13 @@ public class CategoryController {
 		return "redirect:/category";
 	}
 	
-	@PostMapping(value = "/delete")
-	public String deleteCategory(@RequestParam Long id, Map<String, Object> model, final RedirectAttributes redirectAttributes) {
+	@GetMapping(value = "/categories/delete/{id}")
+	public String deleteCategory(@PathVariable Long id, Map<String, Object> model, final RedirectAttributes redirectAttributes) {
 		categoryService.delete(id);
 		List<Category> allCategories = categoryService.getAllCategories();
 		model.put("listCategories", allCategories);
 		redirectAttributes.addFlashAttribute("message","Category Deleted Successfully !");
-		return "redirect:/category";
+		return "redirect:/category"; 
 	}
 	
 	@PostMapping(value = "/update")
