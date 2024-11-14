@@ -6,10 +6,15 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ntt.Catalogue.models.Category;
 import com.ntt.Catalogue.services.CategoryService;
+
+import ch.qos.logback.core.model.Model;
 
 @Controller
 @RequestMapping("/categories")
@@ -40,6 +45,24 @@ public class CategoryController {
 		model.put("listCategories", allCategories);
 		return "category";
 	} 
+	
+	@PostMapping(value = "/save")
+	public String saveCategory(Category category, Map<String, Object> model, final RedirectAttributes redirectAttributes) {
+		categoryService.save(category);
+		List<Category> allCategories = categoryService.getAllCategories();
+		model.put("listCategories",allCategories); 
+		redirectAttributes.addFlashAttribute("message","Category Saved Successfully !");
+		return "redirect:/category";
+	}
+	
+	@PostMapping(value = "/delete")
+	public String deleteCategory(@RequestParam Long id, Map<String, Object> model, final RedirectAttributes redirectAttributes) {
+		categoryService.delete(id);
+		List<Category> allCategories = categoryService.getAllCategories();
+		model.put("listCategories", allCategories);
+		redirectAttributes.addFlashAttribute("message","Category Deleted Successfully !");
+		return "redirect:/category";
+	}
 	
 	
 	
