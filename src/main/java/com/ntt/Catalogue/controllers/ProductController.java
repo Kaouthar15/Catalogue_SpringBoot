@@ -30,7 +30,7 @@ public class ProductController {
 	
 	@GetMapping("")
 	public String getAll(Map<String, Object> model) {
-		List<Product> allProducts = productService.getAllCategories();
+		List<Product> allProducts = productService.getAllProducts();
 		model.put("listProducts", allProducts);
 		return "product";
 	}
