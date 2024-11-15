@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" type="text/css" href="/css/styleProduct.css">
 </head>
 <body>
-
+    <div>
+        <a th:href="${'/products/add'}">Add a Product</a>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="product : ${listProducts}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.price}"></td>
+                <td>
+                    <a th:href="${'/products/' + product.id}">Edit</a>
+                    <a th:href="${'/products/delete/' + product.id}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${product != null}">
+        <h3>Adding/Editing Form</h3>
+        <form data-toggle="validator" role="form" th:object="${product}" method="post"
+              enctype="multipart/form-data" th:action="@{/products/save}">
+            <input type="hidden" th:field="*{id}"/>
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" required th:field="*{name}"/>
+            
+            <label for="description">Description:</label>
+            <input type="text" id="description" required th:field="*{description}"/>
+            
+            <label for="price">Price:</label>
+            <input type="number" id="price" required th:field="*{price}"/>
+            
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
 </body>
 </html>

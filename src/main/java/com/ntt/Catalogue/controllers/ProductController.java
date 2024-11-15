@@ -1,6 +1,5 @@
 package com.ntt.Catalogue.controllers;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ntt.Catalogue.models.Category;
 import com.ntt.Catalogue.models.Product;
 import com.ntt.Catalogue.services.ProductService;
 
@@ -27,6 +27,23 @@ public class ProductController {
 	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}
+	
+	@GetMapping("")
+	public String getAll(Map<String, Object> model) {
+		List<Product> allProducts = productService.getAllCategories();
+		model.put("listProducts", allProducts);
+		return "product";
+	}
+	
+	@GetMapping("/add")
+	public String addCategory(Map<String, Object> model)  {
+		Product product = new Product();
+		List<Product> allProducts = productService.getAllProducts();
+		model.put("listProducts", allProducts);
+		model.put("product", product); 
+		return "product"; 
+	}
+	
 	
 	@PostMapping("/save")
 	public String saveProduct(Product product, Map<String, Object> model , final RedirectAttributes redirectAttributes) {
