@@ -12,15 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.ntt.Catalogue.models.Category;
 import com.ntt.Catalogue.models.Product;
 import com.ntt.Catalogue.services.ProductService;
 
-
-
-
 @Controller
-@RequestMapping("products")
+@RequestMapping("/products")
 public class ProductController {
 	private ProductService productService;
 	
