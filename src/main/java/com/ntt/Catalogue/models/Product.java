@@ -65,4 +65,8 @@ public class Product {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	
+	public String toString() {
+		return "Product : id = " + id + " name = "+ name + " quantity = "+ quantity + " price  = "+ price;
+	}
 }
