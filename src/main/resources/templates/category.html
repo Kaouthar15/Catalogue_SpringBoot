@@ -1,49 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Categories</title>
-<link rel="stylesheet" type="text/css" href="/css/styleCategory.css">
+  <meta charset="UTF-8">
+  <title>Categories</title>
+  <link rel="stylesheet" type="text/css" href="/css/styleCategory.css">
 </head>
 <body>
-	<div>
-		<a th:href="${'/categories/add'}">Add a Category</a>
-		<a href="/products">Product</a> 
-		<table>
-			<tr>
-			
-				<th>ID</th>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Actions</th>
-			</tr>
-			<tr th:each = "category : ${listCategories}">
-				<td th:text="${category.id}"></td>
-				<td th:text="${category.name}"></td>
-				<td th:text="${category.description}"></td>
-				<td>
-					<a th:href="${'/categories/'+ category.id}">Edit</a>
-					<a th:href="${'/categories/delete/'+ category.id}">delete</a>  
-				</td>
-			</tr>
-		</table>
-	</div>
-	<div th:if="${category != null}">
-		<h3>Adding/Editing Form</h3>
-		<form data-toggle="validator" role="form" th:object=${category} method="post" 
-		enctype="multipart/form-data" th:action="@{/categories/save}">
-		
-				<input type="hidden" th:field="*{id}"/>
-				
-				<label for="name">Name : </label>
-				<input type="text" id="name" required th:field="*{name}"/> 
-			
-				<label for="description">Description : </label>
-				<input type="text" id="description" required th:field="*{description}"/>
-				
-				<input type="submit" value="submit "/>
-				
-		</form>
-	</div>
+  <div class="navbar">
+    <a class="btn" th:href="${'/categories/add'}">Add a Category</a>
+    <a class="btn" href="/products">Products</a>
+    <a class="btn" href="/">Index</a>
+  </div>
+
+  <!-- Table Container with Scroll -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="category : ${listCategories}">
+          <td th:text="${category.id}"></td>
+          <td th:text="${category.name}"></td>
+          <td th:text="${category.description}"></td>
+          <td>
+            <a class="btn-edit" th:href="${'/categories/'+ category.id}">Edit</a>
+            <a class="btn-delete" th:href="${'/categories/delete/'+ category.id}">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div th:if="${category != null}" class="form-container">
+    <h3>Adding/Editing Form</h3>
+    <form data-toggle="validator" role="form" th:object=${category} method="post" enctype="multipart/form-data" th:action="@{/categories/save}">
+      
+      <input type="hidden" th:field="*{id}"/>
+      
+      <div class="form-group">
+        <label for="name">Name: </label>
+        <input type="text" id="name" required th:field="*{name}" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description: </label>
+        <input type="text" id="description" required th:field="*{description}" />
+      </div>
+
+      <div class="form-group">
+        <input class="btn-submit" type="submit" value="Submit"/>
+      </div>
+    </form>
+  </div>
+
 </body>
 </html>

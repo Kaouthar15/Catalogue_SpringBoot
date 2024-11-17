@@ -1,100 +1,126 @@
-/* styleCategory.css */
-
+/* Global Styles */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
+  font-family: 'Arial', sans-serif;
   background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-h3 {
-  color: #333;
-  margin-bottom: 10px;
+/* Navbar Styles */
+.navbar {
+  background-color: #2c3e50;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar .btn {
+  background-color: #1abc9c;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.navbar .btn:hover {
+  background-color: #16a085;
+}
+
+/* Table Container Styles */
+.table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 20px;
 }
 
 table {
   width: 100%;
-  margin: 20px 0;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
+table th, table td {
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
 }
 
-th {
-  background-color: #007BFF;
+table th {
+  background-color: #34495e;
   color: white;
 }
 
-tr:hover {
-  background-color: #f1f1f1;
+table td {
+  background-color: #ecf0f1;
 }
 
-a {
-  color: #007BFF;
-  text-decoration: none;
+table td a {
   padding: 5px 10px;
-}
-
-a:hover {
-  background-color: #f0f0f0;
-  border-radius: 4px;
-}
-
-
-/* Container styling */
-form[data-toggle="validator"] {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
+  text-decoration: none;
   border-radius: 5px;
-  background-color: #f9f9f9;
 }
 
-/* Form title */
+.btn-edit {
+  background-color: #f39c12;
+  color: white;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+  opacity: 0.8;
+}
+
+/* Form Styles */
+.form-container {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+}
+
 h3 {
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  color: #333;
   text-align: center;
+  color: #2c3e50;
 }
 
-/* Label styling */
-form[data-toggle="validator"] label {
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
   font-weight: bold;
   display: block;
-  margin-top: 10px;
-  color: #333;
+  margin-bottom: 8px;
 }
 
-/* Input fields styling */
-form[data-toggle="validator"] input[type="text"],
-form[data-toggle="validator"] input[type="submit"] {
+input[type="text"] {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  font-size: 1em;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-/* Submit button styling */
-form[data-toggle="validator"] input[type="submit"] {
-  background-color: #4CAF50;
+input[type="submit"] {
+  background-color: #3498db;
   color: white;
+  padding: 12px 20px;
   border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  margin-top: 15px;
+  transition: background-color 0.3s;
 }
 
-form[data-toggle="validator"] input[type="submit"]:hover {
-  background-color: #45a049;
+input[type="submit"]:hover {
+  background-color: #2980b9;
 }
-

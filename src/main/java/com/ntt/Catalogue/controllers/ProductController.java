@@ -117,21 +117,18 @@ public class ProductController {
 	        else {
 	        	System.out.println("*********"+file.getOriginalFilename());
 	            String uploadDir = System.getProperty("user.dir") + File.separator + "src" + File.separator+ "main"
-	            		+ File.separator + "resources" + File.separator+ "static" +  File.separator+ "img" ; 
+	            		+ File.separator + "resources" + File.separator+ "static" +  File.separator+ "img"; 
 	            System.out.println("*************************" +uploadDir	);
 	            String fileName = file.getOriginalFilename();
 	            File uploadDirFile = new File(uploadDir);
 	            
-	            // Create directory if it doesn't exist
 	            if (!uploadDirFile.exists()) {
 	                uploadDirFile.mkdirs();
 	            }
 
-	            // Transfer the file to the destination folder
 	            File dest = new File(uploadDir + fileName);
 	            file.transferTo(dest);
 
-	            // Set the file name to the photo field
 	            product.setPhoto("/img/"+fileName);
 	        }
 
