@@ -116,9 +116,8 @@ public class ProductController {
 	        }
 	        else {
 	        	System.out.println("*********"+file.getOriginalFilename());
-	        	// Get the upload directory from application properties or user.dir 
 	            String uploadDir = System.getProperty("user.dir") + File.separator + "src" + File.separator+ "main"
-	            		+ File.separator + "resources" + File.separator+ "static" +  File.separator+ "img"+ File.separator ; 
+	            		+ File.separator + "resources" + File.separator+ "static" +  File.separator+ "img" ; 
 	            System.out.println("*************************" +uploadDir	);
 	            String fileName = file.getOriginalFilename();
 	            File uploadDirFile = new File(uploadDir);
