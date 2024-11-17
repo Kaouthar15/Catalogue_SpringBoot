@@ -8,6 +8,7 @@
 <body>
     <div>
         <a th:href="${'/products/add'}">Add a Product</a>
+        <a href="/categories">Categories</a>
         <table>
             <tr>
                 <th>ID</th>
@@ -15,6 +16,7 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Category</th>
+                <th>Image</th>
                 <th>Actions</th>
             </tr>
             <tr th:each="product : ${listProducts}">
@@ -23,53 +25,59 @@
                 <td th:text="${product.quantity}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.category.name}"></td>
+				<td> <img th:src="@{${product.photo}}" style="width: 50px; height: 50px;"/></td>
                 <td>
-                    <a th:href="${'/products/' + product.id}">Edit</a>
+                    <a th:href="${'/products/edit/ ' + product.id}">Edit</a>
                     <a th:href="${'/products/delete/' + product.id}">Delete</a>
                 </td>
             </tr>
         </table>
-        <!-- Pagination Controls -->
-        <div>
-            <ul>
-                <li th:if="${beginIndex > 1}">
-                    <a th:href="@{'/products/' + (currentPage - 1)}">&laquo; Previous</a>
-                </li>
-                <li th:each="pageNum : ${#numbers.sequence(beginIndex, endIndex)}"
-                    th:classappend="${pageNum == currentPage} ? 'active'">
-                    <a th:href="@{'/products/' + pageNum}" th:text="${pageNum}"></a>
-                </li>
-                <li th:if="${endIndex < totalPages}">
-                    <a th:href="@{'/products/' + (currentPage + 1)}">Next &raquo;</a>
-                </li>
-            </ul>
-        </div>
+        
+<!--         <div> -->
+<!--         	<ul> -->
+<!--         		<li><a href="/products/1"><i class="fa-solid fa-angles-left"></i></a></li>  -->
+<!--         		<li th:each="p : ${#numbers.sequence(1,endIndex/beginIndex)}" th:class="${p == currentPage} ? 'active' : '' "> -->
+<!--         			<a th:href="${'/products/'+p}" th:text="${p}"></a> -->
+<!--         		</li> -->
+<!--         		<li th:href="${'/products/'+endIndex}"><i class="fa-solid fa-angles-right"></i></li> -->
+<!--         	</ul> -->
+<!--         </div> -->
+        
     </div>
-    <div th:if="${product != null}">
-        <h3>Adding/Editing Form</h3>
-        <form data-toggle="validator" role="form" th:object="${product}" method="post"
-              enctype="multipart/form-data" th:action="@{/products/save}">
-            <input type="hidden" th:field="*{id}"/>
-            
-            <label for="name">Name:</label>
-            <input type="text" id="name" required th:field="*{name}"/>
-            
-            <label for="description">Description:</label>
-            <input type="text" id="description" required th:field="*{description}"/>
-            
-            <label for="price">Price:</label>
-            <input type="number" id="price" required th:field="*{price}"/>
-            
-            <label for="category">Category:</label>
-            <select id="category" required th:field="*{category.id}">
-                <option value="" disabled selected>Select a category</option>
-                <option th:each="category : ${listCategories}" 
-                        th:value="${category.id}" 
-                        th:text="${category.name}"></option>
-            </select>
-            
-            <input type="submit" value="Submit"/>
-        </form>
-    </div>
+	    <div th:if="${product != null}">
+	    <h3>Adding/Editing Form</h3>
+		    <form data-toggle="validator" role="form" th:object="${product}" method="post"
+		          enctype="multipart/form-data" th:action="@{/products/save}">
+		        <input type="hidden" th:field="*{id}"/>
+		        
+		        <label for="name">Name:</label>
+		        <input type="text" id="name" required th:field="*{name}"/>
+		        
+		        <label for="quantity">Quantity:</label>
+		        <input type="number" id="quantity" required th:field="*{quantity}"/>
+		        
+		        <label for="price">Price:</label>
+		        <input type="number" id="price" required th:field="*{price}"/>
+		        
+		        <label for="image">Image:</label>
+		        <input type="file" id="image" name="file" accept="image/*"/>
+		        
+		        <div th:if="${product.photo != null}">
+		            <img th:src="@{${product.photo}}" style="width: 50px; height: 50px;"/>
+		        </div>
+		        
+		        <label for="category">Category:</label>
+		        <select id="category" required th:field="*{category.id}">
+		            <option value="" disabled>Select a category</option>
+		            <option th:each="category : ${listCategories}" 
+		                    th:value="${category.id}" 
+		                    th:text="${category.name}">
+		            </option> 
+		        </select>
+		        
+		        <input type="submit" value="Submit"/>
+		    </form>
+	</div>
+
 </body>
 </html>

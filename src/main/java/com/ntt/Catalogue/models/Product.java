@@ -25,6 +25,13 @@ public class Product {
 	@ManyToOne
     @JoinColumn(name = "id_category", nullable = false)
     private Category category;
+	
+	public Category getCategory() {
+		return this.category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	public Long getId() {
 		return id;
