@@ -31,11 +31,11 @@ body {
 }
 
 /* Table Container Styles */
-.table-container {
-  max-height: 400px;
-  overflow-y: auto;
-  margin: 20px;
-}
+/* .table-container { */
+/*   max-height: 400px; */
+/*   overflow-y: auto; */
+/*   margin: 20px; */
+/* } */
 
 table {
   width: 100%;
