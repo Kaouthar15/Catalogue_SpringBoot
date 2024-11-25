@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Products</title>
@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="navbar">
-        <a class="btn" th:href="${'/products/add'}">Add a Product</a>
+        <a class="btn" th:href="${'/products/add'}" sec:authorize="hasRole('ADMIN')">Add a Product</a>
         <a class="btn" href="/categories">Categories</a>
         <a class="btn" href="/index">Index</a>
     </div>
@@ -23,7 +23,7 @@
                     <th>Price</th>
                     <th>Category</th>
                     <th>Image</th>
-                    <th>Actions</th>
+                    <th sec:authorize="hasRole('ADMIN')">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,9 +34,9 @@
                     <td th:text="${product.price} + ' $'"></td>
                     <td th:text="${product.category.name}"></td>
                     <td><img th:src="@{${product.photo}}" class="product-image"/></td>
-                    <td>
-                        <a class="btn-edit" th:href="${'/products/edit/' + product.id}">Edit</a>
-                        <a class="btn-delete" th:href="${'/products/delete/' + product.id}">Delete</a>
+                    <td sec:authorize="hasRole('ADMIN')">
+                        <a  class="btn-edit" th:href="${'/products/edit/' + product.id}">Edit</a>
+                        <a  class="btn-delete" th:href="${'/products/delete/' + product.id}">Delete</a>
                     </td>
                 </tr>
             </tbody>

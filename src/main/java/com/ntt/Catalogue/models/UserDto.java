@@ -24,6 +24,8 @@ public class UserDto implements Serializable {
 
     @NotEmpty(message = "Password should not be empty")
     private String password;
+    
+    private boolean roleCheckbox;
 
     // Constructors
     public UserDto() {
@@ -84,4 +86,12 @@ public class UserDto implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public boolean isRoleCheckbox() {
+		return roleCheckbox;
+	}
+
+	public void setRoleCheckbox(boolean roleCheckbox) {
+		this.roleCheckbox = roleCheckbox;
+	}
 }

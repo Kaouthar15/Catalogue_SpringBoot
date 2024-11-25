@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>Categories</title>
@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="navbar">
-    <a class="btn" th:href="${'/categories/add'}">Add a Category</a>
+    <a class="btn" th:href="${'/categories/add'}" sec:authorize="hasRole('ADMIN')">Add a Category</a>
     <a class="btn" href="/products">Products</a>
     <a class="btn" href="/index">Index</a>
   </div>
@@ -20,7 +20,7 @@
           <th>ID</th>
           <th>Name</th>
           <th>Description</th>
-          <th>Actions</th>
+          <th sec:authorize="hasRole('ADMIN')">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +28,7 @@
           <td th:text="${category.id}"></td>
           <td th:text="${category.name}"></td>
           <td th:text="${category.description}"></td>
-          <td>
+          <td sec:authorize="hasRole('ADMIN')">
             <a class="btn-edit" th:href="${'/categories/'+ category.id}">Edit</a>
             <a class="btn-delete" th:href="${'/categories/delete/'+ category.id}">Delete</a>
           </td>

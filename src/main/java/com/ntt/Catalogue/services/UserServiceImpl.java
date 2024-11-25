@@ -1,6 +1,7 @@
 package com.ntt.Catalogue.services;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,18 +28,36 @@ public class UserServiceImpl implements UserService {
 		this.passwordEncoder = passwordEncoder;
 	}
 
-	@Override
-	public void saveUser(UserDto userDto) {
-		User user = new User();
-		user.setName(userDto.getFirstName() + " " + userDto.getLastName());
-		user.setEmail(userDto.getEmail());
-		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-		Role role = roleRepository.findByName("ROLE_ADMIN");
-		if (role == null) {
-			role = checkRoleExist();
-		}
-		user.setRoles(Arrays.asList(role));
-		userRepository.save(user);
+//	@Override
+//	public void saveUser(UserDto userDto) {
+//		User user = new User();
+//		user.setName(userDto.getFirstName() + " " + userDto.getLastName());
+//		user.setEmail(userDto.getEmail());
+//		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+//		Role role = roleRepository.findByName("ROLE_ADMIN");
+//		if (role == null) {
+//			role = checkRoleExist();
+//		}
+//		user.setRoles(Arrays.asList(role));
+//		userRepository.save(user);
+//	}
+	
+	public void saveUser(UserDto userDto, String role) {
+	    User user = new User();
+	    user.setName(userDto.getFirstName() + " " + userDto.getLastName());
+	    user.setEmail(userDto.getEmail());
+	    user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
+	    // Assign the appropriate role
+	    Role userRole = roleRepository.findByName(role);
+	    if (userRole == null) {
+	        userRole = new Role();
+	        userRole.setName(role);
+	        roleRepository.save(userRole);
+	    }
+	    user.setRoles(Collections.singletonList(userRole));
+	    
+	    userRepository.save(user);
 	}
 
 	@Override
@@ -61,10 +80,10 @@ public class UserServiceImpl implements UserService {
 		return userDto;
 	}
 
-	private Role checkRoleExist() {
-		Role role = new Role();
-		role.setName("ROLE_ADMIN");
-		return roleRepository.save(role);
-	}
+//	private Role checkRoleExist() {
+//		Role role = new Role();
+//		role.setName("ROLE_ADMIN");
+//		return roleRepository.save(role);
+//	}
 
 }

@@ -6,7 +6,7 @@ import com.ntt.Catalogue.models.User;
 import com.ntt.Catalogue.models.UserDto;
 
 public interface UserService {
-	 void saveUser(UserDto userDto);
+	 void saveUser(UserDto userDto,String role);
 	 User findUserByEmail(String email);
 	 List<UserDto> findAllUsers();
 }

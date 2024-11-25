@@ -28,8 +28,11 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" th:href="@{/register}">Register</a></li>
+						<li class="nav-item"><a class="nav-link active"
+						aria-current="page" th:href="@{/logout}">Logout</a></li>
 				</ul>
 			</div>
+			
 		</div>
 		
 	</nav>
@@ -43,7 +46,7 @@
 		    This content is visible only to users with the ADMIN role.
 		</div>
 		<div sec:authorize="hasRole('USER')">
-		    This content is visible only to users with the ADMIN role.
+		    This content is visible only to users with the USER role.
 		</div>
 		<div sec:authorize="isAuthenticated()">
 		    Welcome, authenticated user!
@@ -51,6 +54,11 @@
 		<div sec:authorize="isAnonymous()">
 		    Please log in to access more features.
 		</div>
+		
+			<p sec:authentication="name"></p>
+			<p sec:authentication="principal.username"></p>
+			<p sec:authentication="principal.authorities"></p>
+		
 	</div>
 
 	<!-- Bootstrap JS and dependencies -->

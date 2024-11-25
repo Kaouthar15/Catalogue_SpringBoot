@@ -31,8 +31,10 @@ public class SpringSecurity {
 						.requestMatchers("/users").hasRole("ADMIN")
 						.requestMatchers("/products/**").authenticated()
 				        .requestMatchers("/categories/**").authenticated()
+				        .requestMatchers("/api/**").permitAll()
 				        .requestMatchers("/css/**", "/js/**", "/img/**").permitAll())
-				.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/users")
+				
+				.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/index")
 						.permitAll())
 				.logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll());
 		return http.build();
