@@ -11,7 +11,7 @@ import com.ntt.Catalogue.models.Category;
 
 @Repository
 @CrossOrigin("http://localhost:4200")
-@RepositoryRestResource(path = "categories")
+@RepositoryRestResource(excerptProjection = Category.class)
 public interface CategoryRepository extends  JpaRepository<Category, Long>{
 	List<Category> findByName(String name);
 }
