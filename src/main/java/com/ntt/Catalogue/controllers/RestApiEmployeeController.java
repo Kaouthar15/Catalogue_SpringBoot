@@ -14,8 +14,8 @@ import com.ntt.Catalogue.models.Employee;
 @RequestMapping("api")
 @RestController
 public class RestApiEmployeeController {
-	@GetMapping
-	public List<Employee> getAllEmployees(){
+	@GetMapping(value = "/employee", produces = "application/json")
+	public List<Employee> getAllEmployees(){	
 		List<Employee> employees = new ArrayList<>();
 		employees.add(new Employee(1L,"Ahmed","Developer",20000));
 		employees.add(new Employee(2L,"Sara","Analyst",20000));
